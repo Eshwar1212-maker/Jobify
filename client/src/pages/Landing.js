@@ -1,14 +1,14 @@
-import logo from "../assets/images/logo.svg";
 import main from "../assets/images/main.svg";
-import styled from 'styled-components';
 import Wrapper from "../assets/wrappers/Testing"
+import Logo from "../components/Logo";
+import { Link } from "react-router-dom";
 
 
 const Landing = () => {
   return (
     <Wrapper>
       <nav>
-        <img src={logo} alt="JobIt" className="logo" />
+        <Logo />
       </nav>
       <div className="container page">
         <div className="info">
@@ -21,10 +21,9 @@ const Landing = () => {
             minim. Occaecat in id tempor deserunt ipsum et voluptate anim eu
             velit eiusmod ad sint. Qui aliquip dolore commodo dolor.
           </p>
-          <button className="btn btn-hero">Login/Register</button>
-        </div>
-        <div>
-            
+          <Link to="/register" className="btn btn-hero">
+            Login/Register
+          </Link>
         </div>
         <img src={main} alt="job hunt" className="img main-img"/>
       </div>
