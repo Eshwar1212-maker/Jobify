@@ -1,30 +1,39 @@
-import React, { useContext, useReducer} from "react";
-import reducer from './reducer'
+import React, { useContext, useReducer } from "react";
+import reducer from "./reducer";
 
-import { DISPLAY_ALERT } from "./actions"
+import { DISPLAY_ALERT } from "./actions";
+import { CLEAR_ALERT } from "./actions";
+
 
 const initialState = {
-    isLoading: false, 
-    showAlert: false, 
-    alertText : '',
-    alertType: '',
-}
+  isLoading: false,
+  showAlert: false,
+  alertText: "",
+  alertType: "",
+};
 
 const AppContext = React.createContext();
 
-const AppProvider = ({children}) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
-    const displayALert = () => {
-        dispatch({type:DISPLAY_ALERT})
-    }
-    return(
-     <AppContext.Provider value={{ ...state, displayALert }}>
-        {children}
-    </AppContext.Provider>
-    )
-}
-const useAppContext = () => {
-    return useContext(AppContext); 
-}
+const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const Dalert = () => {
+    dispatch({ type: DISPLAY_ALERT });
+    clearAlert();
+  };
+  const clearAlert = () => {
+    setTimeout(() => {
+      dispatch({ type: CLEAR_ALERT });
+    }, 3000);
+  };
 
-export {AppProvider, initialState, useAppContext}
+  return (
+    <AppContext.Provider value={{ ...state, Dalert }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
+const useAppContext = () => {
+  return useContext(AppContext);
+};
+
+export { AppProvider, initialState, useAppContext };

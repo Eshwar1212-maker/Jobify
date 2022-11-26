@@ -26,11 +26,12 @@ const Register = () => {
     e.preventDefault()
     const {name, email, password, isMember} = values
     if(!email || !password || (!isMember && !name)) {
-        displayAlert();
+        alert('Please fill out all of the field ')
         return
     } 
     console.log(values);
   }
+  
   return( 
   <Wrapper className="full-page">
     <form className="form" onSubmit={onSubmit}>
